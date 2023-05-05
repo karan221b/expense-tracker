@@ -4,11 +4,17 @@ import { GlobalContext } from '../context/GlobalState';
 export const AddTransaction = () => {
   const [text, setText] = useState('');
   const [amount, setAmount] = useState(0);
+  const [error, setError] = useState('');
 
   const { addTransaction } = useContext(GlobalContext);
 
   const onSubmit = e => {
     e.preventDefault();
+    
+    if (amount === 0) {
+      setError('Enter a valid value');
+      return;
+    }
 
     const newTransaction = {
       id: Math.floor(Math.random() * 100000000),
@@ -17,6 +23,8 @@ export const AddTransaction = () => {
     }
 
     addTransaction(newTransaction);
+    setText('');
+    setError('');
   }
 
   return (
@@ -33,6 +41,7 @@ export const AddTransaction = () => {
             (negative - expense, positive - income)</label
           >
           <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Enter amount..." />
+          {error && <p style={{ color: "red" }}>{error}</p>}
         </div>
         <button className="btn">Add transaction</button>
       </form>
