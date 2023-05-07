@@ -14,7 +14,7 @@ npm start
 # Build for prod
 npm run build
 ```
-# Live link
+## Live link
 
 Here is the live production link of the app hosted on Netlify : [Expense Tracker](https://expense-tracker-react-web-app.netlify.app/)
 
